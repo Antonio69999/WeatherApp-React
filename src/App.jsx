@@ -2,24 +2,24 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Weather from "./components/Weather/Weather";
+import Search from "./components/Search/Search";
 
 function App() {
   // const baseUri = process.env.REACT_APP_WEATHER_BASE_URI;
-  // const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY;
 
-
-
-  const [city, setCity] = useState(["Saint-Etienne"]);
+  const [city, setCity] = useState(["Lyon"]);
   const [data, setData] = useState([]);
   const [temp, setTemp] = useState([]);
   const [wind, setWind] = useState([]);
   const [windDegree, setWindDegree] = useState([]);
   const [image, setImage] = useState([]);
+  const [forcast, setForcast] = useState(null);
 
   useEffect(() => {
     const fetchWeatherData = () => {
       fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=58c00ef5c6b64e00a2f102507230611&q=${city}&days=3&aqi=no&alerts=no`
+        `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no`
       )
         .then((response) => {
           return response.json();
@@ -39,10 +39,14 @@ function App() {
 
   // console.log(data.location.name);
 
+  const handleOnSearchChange = (searchData)  => {
+    console.log(searchData);
+  }
+
   return (
     <div className="App">
       <Header />
-
+      <Search onSearchChange={handleOnSearchChange}></Search>
       {typeof data.location != "undefined" ? (
         <Weather
           city={city}
