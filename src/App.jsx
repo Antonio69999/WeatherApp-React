@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Weather from "./components/Weather/Weather";
 import Search from "./components/Search/Search";
 import Forecast from "./components/Forecast/Forecast";
+import Geolocation from "./components/Geolocation/Geolocation";
 
 function App() {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -44,6 +45,7 @@ function App() {
       <Search onSearchChange={handleOnSearchChange} />
       <Weather data={currentWeather} />
       {forecastWeather && <Forecast data={forecastWeather} />}
+      <Geolocation></Geolocation>
     </div>
   );
 }
