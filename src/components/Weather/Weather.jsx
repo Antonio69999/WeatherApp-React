@@ -1,5 +1,6 @@
 import React from "react";
 import Days from "../Days/Days"
+// import "./Weather.css"
 
 function Weather({ data }) {
   if (!data) {
@@ -26,10 +27,10 @@ function Weather({ data }) {
             </p>
             <span className="temperature">{data.current.temp_c}°C</span>
             <div className="wind">
-              Vent {data.current.wind_kph} km/h ({data.current.wind_degree}°)
+              Wind speed {data.current.wind_kph} km/h ({data.current.wind_degree}°)
             </div>
           </div>
-          <Days handleClickDay={handleClickDay} />
+          {/* <Days handleClickDay={handleClickDay} /> */}
         </div>
       </div>
     </div>

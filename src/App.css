@@ -9,7 +9,6 @@ body {
 .App-logo {
   height: 100px;
   pointer-events: none;
-
 }
 
 .App-header {
@@ -26,4 +25,5 @@ body {
 .App-link {
   color: #61dafb;
 }
+
 
