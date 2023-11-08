@@ -3,7 +3,6 @@ import { AsyncPaginate } from "react-select-async-paginate";
 
 function Search({ onSearchChange }) {
   const [search, setSearch] = useState(null);
-  //   const [city, setCity] = useState(["Lyon"]);
   const apiKey = import.meta.env.VITE_API_KEY;
 
   const handleOnChange = (searchData) => {
@@ -28,7 +27,7 @@ function Search({ onSearchChange }) {
             options: cities.map((city) => {
               return {
                 value: `${city.lat} ${city.lon}`,
-                label: `${city.name}`,
+                label: `${city.name}, ${city.country}`,
               };
             }),
           };
