@@ -1,17 +1,15 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-class Geolocation extends Component {
-  componentDidMount() {
-    this.getLocation();
-  }
+function Geolocation() {
+  const [weatherData, setWeatherData] = useState(null);
 
-  getPosition = () => {
+  const getPosition = () => {
     return new Promise(function (resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
   };
 
-  getWeather = async (lat, lon) => {
+  const getWeather = async (lat, lon) => {
     const apiKey = import.meta.env.VITE_API_KEY;
 
     try {
@@ -21,7 +19,7 @@ class Geolocation extends Component {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Weather data:", data);
+        setWeatherData(data); // Store weather data in state
       } else {
         console.error("Failed to fetch weather data.");
       }
@@ -30,17 +28,42 @@ class Geolocation extends Component {
     }
   };
 
-  getLocation = () => {
-    this.getPosition()
+  useEffect(() => {
+    getPosition()
       .then((position) => {
-        this.getWeather(position.coords.latitude, position.coords.longitude); // Use position.coords.latitude and position.coords.longitude
+        getWeather(position.coords.latitude, position.coords.longitude);
       })
       .catch((err) => console.error(err));
-  };
+  }, []);
 
-  render() {
-    return <div>Geolocation</div>;
-  }
+  return (
+    <div className="row">
+      <div className="col s12 m6 push-m3">
+        <div className="weather card blue-grey darken-1">
+          <div className="card-content white-text">
+            {weatherData && (
+              <div>
+                <span className="card-title">{weatherData.location.name}</span>
+                <p>
+                  <img
+                    src={weatherData.current.condition.icon}
+                    alt={weatherData.current.condition.icon}
+                  />
+                </p>
+                <span className="temperature">
+                  {weatherData.current.temp_c}°C
+                </span>
+                <div className="wind">
+                  Wind speed {weatherData.current.wind_kph} km/h (
+                  {weatherData.current.wind_degree}°)
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Geolocation;
