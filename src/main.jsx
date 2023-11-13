@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -23,9 +22,9 @@ i18next.init({
       translation: translationFR,
     },
   },
-  lng: "es", // Set the default language
+  lng: "en", // Set the default language
   fallbackLng: "en", // Fallback language in case the specified language is not available
-  interpolation: { escapeValue: false }, // React already does escaping
+  interpolation: { escapeValue: false },
 });
 
 createRoot(document.getElementById("root")).render(

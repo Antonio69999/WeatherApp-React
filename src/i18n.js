@@ -2,10 +2,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Import translations
-import translationEN from './locales/en/translation.json'; // English translations
-import translationES from './locales/es/translation.json'; // Spanish translations
-
 // Set up i18n
 i18n
   .use(initReactI18next)
@@ -17,6 +13,9 @@ i18n
       es: {
         translation: translationES,
       },
+      fr: {
+        translation: translationFR,
+      }
     },
     lng: 'en', // Set the default language
     fallbackLng: 'en', // Fallback language in case the specified language is not available
