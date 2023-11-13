@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
+import { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 
 function Search({ onSearchChange }) {
   const [search, setSearch] = useState(null);
@@ -33,17 +35,18 @@ function Search({ onSearchChange }) {
           };
         } else {
           // Handle the case where the response is not an array
-          console.error('City data not found in the API response');
+          console.error("City data not found in the API response");
           return { options: [] };
         }
       })
       .catch((err) => console.error(err));
   };
-  
+
+  const { t, i18n } = useTranslation();
 
   return (
     <AsyncPaginate
-      placeholder="Search for city"
+      placeholder={t('search.placeholder')}
       debounceTimeout={600}
       value={search}
       onChange={handleOnChange}
