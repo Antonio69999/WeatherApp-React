@@ -7,14 +7,15 @@ import Forecast from "./components/Forecast/Forecast";
 import Geolocation from "./components/Geolocation/Geolocation";
 
 function App() {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  // const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = "58c00ef5c6b64e00a2f102507230611";
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecastWeather, setForecastWeather] = useState(null);
 
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(" ");
     const apiUrlCurrentWeather = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
-    const apiUrlForecast = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=5&aqi=no&alerts=no`;
+    const apiUrlForecast = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=3`;
 
     // Fetch current weather
     fetch(apiUrlCurrentWeather)

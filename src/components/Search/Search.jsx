@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 function Search({ onSearchChange }) {
   const [search, setSearch] = useState(null);
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = "58c00ef5c6b64e00a2f102507230611";
 
   const handleOnChange = (searchData) => {
     setSearch(searchData);
@@ -18,8 +18,7 @@ function Search({ onSearchChange }) {
 
   const loadOptions = (inputValue) => {
     return fetch(
-      `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${inputValue}`,
-      options
+      `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${inputValue}`
     )
       .then((response) => response.json())
       .then((cities) => {
@@ -46,7 +45,7 @@ function Search({ onSearchChange }) {
 
   return (
     <AsyncPaginate
-      placeholder={t('search.placeholder')}
+      placeholder={t("search.placeholder")}
       debounceTimeout={600}
       value={search}
       onChange={handleOnChange}
