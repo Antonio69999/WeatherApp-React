@@ -10,8 +10,8 @@ function Geolocation() {
   };
 
   const getWeather = async (lat, lon) => {
-    const apiKey = '58c00ef5c6b64e00a2f102507230611';
-console.log(lat, lon);
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+    console.log(lat, lon);
     try {
       const response = await fetch(
         `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&aqi=no`

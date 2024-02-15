@@ -7,10 +7,11 @@ import Forecast from "./components/Forecast/Forecast";
 import Geolocation from "./components/Geolocation/Geolocation";
 
 function App() {
-  // const apiKey = import.meta.env.VITE_API_KEY;
-  const apiKey = "58c00ef5c6b64e00a2f102507230611";
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecastWeather, setForecastWeather] = useState(null);
+  console.log(import.meta.env.VITE_SOME_KEY);
+
 
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(" ");

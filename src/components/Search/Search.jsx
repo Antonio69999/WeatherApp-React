@@ -5,8 +5,7 @@ import { useTranslation } from "react-i18next";
 
 function Search({ onSearchChange }) {
   const [search, setSearch] = useState(null);
-  const apiKey = "58c00ef5c6b64e00a2f102507230611";
-
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     onSearchChange(searchData);
